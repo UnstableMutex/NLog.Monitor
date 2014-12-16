@@ -23,6 +23,29 @@ namespace NLog.Monitor
         public MainWindow()
         {
             InitializeComponent();
+           
+        }
+
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+ MoveToLocation();
+        }
+
+        private void MoveToLocation()
+        {
+            var scrnw = System.Windows.SystemParameters.FullPrimaryScreenWidth;
+            var scrnh = System.Windows.SystemParameters.FullPrimaryScreenHeight;
+            scrnw -= ActualWidth;
+            scrnh -= ActualHeight;
+            Left = scrnw-40;
+            Top = scrnh;
+        }
+
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
