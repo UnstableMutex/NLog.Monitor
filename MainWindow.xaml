@@ -2,19 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:view="clr-namespace:NLog.Monitor.View"
         WindowStartupLocation="Manual"
         Title="MainWindow" Height="120" WindowStyle="None" ResizeMode="CanMinimize" Width="450">
     <Grid>
         <tb:TaskbarIcon
       IconSource="/Icons/icon.ico"
       ToolTipText="hello world" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3" Click="ButtonBase_OnClick">x</Button>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="hide" Margin="3" Click="ButtonBase_OnClick">_</Button>
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-            <Button>&lt;</Button>
-            <Button>&gt;</Button>
+            <Button ToolTip="older">&lt;</Button>
+            <Button ToolTip="newer">&gt;</Button>
         </StackPanel>
         <Grid Margin="5,5,35,5">
-            <Rectangle Fill="Beige"></Rectangle>
+            <Border BorderThickness="1" BorderBrush="Blue">
+                 <view:LogItemView/>
+            </Border>
+           
+            <!--<Rectangle Fill="Beige"></Rectangle>-->
         </Grid>
     </Grid>
 </Window>
