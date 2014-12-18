@@ -23,7 +23,7 @@ namespace NLog.Monitor
         public MainWindow()
         {
             InitializeComponent();
-           
+            this.DataContext = new MainWindowViewModel();
         }
 
         protected override void OnContentRendered(EventArgs e)
