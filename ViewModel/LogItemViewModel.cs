@@ -18,8 +18,8 @@ namespace NLog.Monitor.ViewModel
             _collectionName = collectionName;
         }
 
-        public string Message { get; set; }
-        public string UserName { get; set; }
+        public string Message { get { return _logitem["Message"].AsString; } }
+        public string UserName { get { return _logitem["UserName"].AsString; }}
         public Guid ID { get; set; }
 
     }

@@ -16,7 +16,7 @@
         </StackPanel>
         <Grid Margin="5,5,35,5">
             <Border BorderThickness="1" BorderBrush="Blue">
-                 <view:LogItemView/>
+                 <view:LogItemView DataContext="{Binding Selected}" />
             </Border>
            
             <!--<Rectangle Fill="Beige"></Rectangle>-->
