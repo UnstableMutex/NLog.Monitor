@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MVVMLight.Extras;
 
 namespace NLog.Monitor.ViewModel
 {
-    class LogItemViewModel
+    class LogItemViewModel:VMB
     {
         private readonly BsonDocument _logitem;
         private readonly string _collectionName;

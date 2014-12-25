@@ -7,14 +7,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MVVMLight.Extras;
 using NLog.Monitor.Annotations;
 using NLog.Monitor.ViewModel;
 
 namespace NLog.Monitor
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    class MainWindowViewModel :VMB
     {
         public MainWindowViewModel()
         {
@@ -32,30 +35,46 @@ namespace NLog.Monitor
                 }
             }
             _selected = LogItems.First;
-
+           // AssignCommands<NoWeakRelayCommand>();
+            NextCommand = new RelayCommand(Next, CanNext);
+            PrevCommand = new RelayCommand(Prev,CanPrev);
         }
+
 
         public LinkedList<LogItemViewModel> LogItems { get; private set; }
         private LinkedListNode<LogItemViewModel> _selected;
         public LogItemViewModel Selected { get { return _selected.Value; } }
+        public RelayCommand PrevCommand { get; private set; }
+
+        
+        
+        public RelayCommand NextCommand { get; private set; }
+
 
         public void Next()
         {
             _selected = _selected.Next;
-            OnPropertyChanged("Selected");
+            RaisePropertyChanged("Selected");
+            NextCommand.RaiseCanExecuteChanged();
+             PrevCommand.RaiseCanExecuteChanged();         
         }
 
+        bool CanNext()
+        {
+            return _selected.Next != null;
+        }
+        bool CanPrev()
+        {
+            return _selected.Previous != null;
+        }
         public void Prev()
         {
             _selected = _selected.Previous;
-            OnPropertyChanged("Selected");
+            RaisePropertyChanged("Selected");
+            NextCommand.RaiseCanExecuteChanged();
+            PrevCommand.RaiseCanExecuteChanged();  
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+
     }
 }

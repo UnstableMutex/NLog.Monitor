@@ -11,8 +11,8 @@
       ToolTipText="hello world" />
         <Button VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="hide" Margin="3" Click="ButtonBase_OnClick">_</Button>
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-            <Button ToolTip="older">&lt;</Button>
-            <Button ToolTip="newer">&gt;</Button>
+            <Button Command="{Binding PrevCommand}" ToolTip="older">&lt;</Button>
+            <Button Command="{Binding NextCommand}" ToolTip="newer">&gt;</Button>
         </StackPanel>
         <Grid Margin="5,5,35,5">
             <Border BorderThickness="1" BorderBrush="Blue">
