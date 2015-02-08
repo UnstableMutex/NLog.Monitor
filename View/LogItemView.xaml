@@ -16,9 +16,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button VerticalAlignment="Top" ToolTip="Не показывать больше" HorizontalAlignment="Right" Margin="0,5,5,0" Grid.Column="1">x</Button>
-
-        <Label Grid.ColumnSpan="2" Margin="0,0,266,30.6" Grid.RowSpan="2"   >User</Label>
-        <TextBlock Text="{Binding UserName}" Grid.Column="1" Margin="0.4,0,-1,30.6" Grid.RowSpan="2"/>
-        <Label Grid.Row="1">Message</Label><TextBlock Text="{Binding Message}" Grid.Column="1" Grid.Row="1"/>
+        <Label>User</Label>
+        <TextBlock VerticalAlignment="Center" Text="{Binding UserName}" Grid.Column="1" />
+        <Label Grid.Row="1">Message</Label>
+        <TextBlock VerticalAlignment="Center" Text="{Binding Message}" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </UserControl>

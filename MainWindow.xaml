@@ -3,24 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:view="clr-namespace:NLog.Monitor.View"
+    
         WindowStartupLocation="Manual"
+        PreviewMouseWheel="MainWindow_OnPreviewMouseWheel"
+  
         Title="MainWindow" Height="120" WindowStyle="None" ResizeMode="CanMinimize" Width="450">
+   
     <Grid>
         <tb:TaskbarIcon
       IconSource="/Icons/icon.ico"
       ToolTipText="hello world" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="hide" Margin="3" Click="ButtonBase_OnClick">_</Button>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right"  VerticalAlignment="Top" >
+            <Button ToolTip="hide" Width="24" Height="24" Margin="3" Click="ButtonBase_OnClick">_</Button>
+           <Button Width="24" Margin="3" Height="24" >
+            <Image Source="Icons/settings.png"></Image>
+        </Button>    
+        </StackPanel>
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
             <Button Command="{Binding PrevCommand}" ToolTip="older">&lt;</Button>
             <Button Command="{Binding NextCommand}" ToolTip="newer">&gt;</Button>
         </StackPanel>
-        <Grid Margin="5,5,35,5">
+        <Grid Margin="5,5,60,5">
             <Border BorderThickness="1" BorderBrush="Blue">
                  <view:LogItemView DataContext="{Binding Selected}" />
             </Border>
-           
-            <!--<Rectangle Fill="Beige"></Rectangle>-->
         </Grid>
-        <Button Content="sets" HorizontalAlignment="Left" Height="21" Margin="419,41,0,0" VerticalAlignment="Top" Width="28"/>
     </Grid>
 </Window>

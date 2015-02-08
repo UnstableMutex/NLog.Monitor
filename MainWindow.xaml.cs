@@ -29,7 +29,7 @@ namespace NLog.Monitor
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
- MoveToLocation();
+            MoveToLocation();
         }
 
         private void MoveToLocation()
@@ -38,7 +38,7 @@ namespace NLog.Monitor
             var scrnh = System.Windows.SystemParameters.FullPrimaryScreenHeight;
             scrnw -= ActualWidth;
             scrnh -= ActualHeight;
-            Left = scrnw-40;
+            Left = scrnw - 40;
             Top = scrnh;
         }
 
@@ -46,6 +46,20 @@ namespace NLog.Monitor
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void MainWindow_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            dynamic dc = this.DataContext;
+            if (e.Delta < 0)
+            {
+
+                dc.NextCommand.Execute(null);
+            }
+            else
+            {
+                dc.PrevCommand.Execute(null);
+            }
         }
     }
 }
